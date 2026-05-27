@@ -1,0 +1,692 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,
+body,
+#root{
+  width:100%;
+  height:100%;
+}
+
+body{
+  overflow:hidden;
+  font-family:sans-serif;
+  background:black;
+}
+
+/* =========================================
+   SCREENS
+========================================= */
+
+.screen{
+  width:100vw;
+  height:100vh;
+
+  position:relative;
+  overflow:hidden;
+}
+
+.main-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+
+  background:rgba(0,0,0,0.45);
+
+  backdrop-filter:blur(3px);
+}
+
+.content{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:20px;
+
+  z-index:10;
+}
+
+/* =========================================
+   TITLES
+========================================= */
+
+.title{
+
+  color:white;
+
+  font-size:clamp(35px,6vw,70px);
+
+  text-align:center;
+
+  text-shadow:
+  0 0 10px lime,
+  0 0 30px lime;
+}
+
+.happy-title{
+
+  color:hotpink;
+
+  font-size:clamp(35px,6vw,80px);
+
+  text-align:center;
+
+  text-shadow:
+  0 0 10px hotpink,
+  0 0 40px hotpink;
+}
+
+.text-rainbow{
+
+  background:
+  linear-gradient(
+    90deg,
+    #ff00ff,
+    #00ffff,
+    #ffff00,
+    #ff00ff
+  );
+
+  background-size:300%;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  animation:rainbowMove 5s linear infinite;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.buttons{
+  display:flex;
+  gap:20px;
+}
+
+.yes-btn,
+.no-btn,
+.thanks-btn{
+
+  padding:15px 35px;
+
+  border:none;
+  border-radius:15px;
+
+  font-size:20px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.yes-btn{
+
+  background:lime;
+  color:black;
+
+  box-shadow:
+  0 0 20px lime;
+}
+
+.no-btn{
+
+  background:crimson;
+  color:white;
+
+  box-shadow:
+  0 0 20px crimson;
+}
+
+.thanks-btn{
+
+  background:hotpink;
+  color:white;
+
+  box-shadow:
+  0 0 20px hotpink;
+}
+
+.yes-btn:hover,
+.no-btn:hover,
+.thanks-btn:hover{
+
+  transform:scale(1.1);
+}
+
+/* =========================================
+   VIDEO
+========================================= */
+
+.video-screen{
+
+  width:100vw;
+  height:100vh;
+
+  background:black;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+}
+
+.video-player{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+/* =========================================
+   MAZE
+========================================= */
+
+.maze-scene{
+
+  width:100vw;
+  height:100vh;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  background:
+  linear-gradient(
+    135deg,
+    #090014,
+    #16002d,
+    #07111f
+  );
+
+  overflow:hidden;
+
+  position:relative;
+}
+
+/* animated stars */
+
+.maze-scene::before{
+
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background-image:
+  radial-gradient(white 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  opacity:0.08;
+
+  animation:starsMove 40s linear infinite;
+}
+
+.maze-grid{
+
+  display:grid;
+
+  border:4px solid #7c3aed;
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  box-shadow:
+  0 0 25px rgba(124,58,237,0.8),
+  0 0 50px rgba(124,58,237,0.35);
+
+  margin-bottom:25px;
+
+  position:relative;
+
+  z-index:2;
+}
+
+.maze-cell{
+
+  position:relative;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+}
+
+.wall{
+
+  background:
+  linear-gradient(
+    145deg,
+    #24104f,
+    #312e81
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+}
+
+.path{
+
+  background:#0f172a;
+}
+
+.player{
+
+  font-size:1.2rem;
+
+  animation:
+  playerMove 0.2s ease;
+}
+
+.goal{
+
+  font-size:1.2rem;
+
+  animation:
+  pulseGoal 1s infinite;
+}
+
+/* =========================================
+   D-PAD PLAYSTATION STYLE
+========================================= */
+
+.maze-controls{
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:10px;
+
+  position:relative;
+
+  z-index:2;
+
+  margin-top:8px;
+
+  user-select:none;
+}
+
+.dpad-top,
+.dpad-middle,
+.dpad-bottom{
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:10px;
+}
+
+.dpad-space{
+
+  width:78px;
+  height:78px;
+}
+
+.btn-ctrl{
+
+  width:78px;
+  height:78px;
+
+  border:none;
+  outline:none;
+
+  border-radius:22px;
+
+  background:
+  linear-gradient(
+    145deg,
+    #19192a,
+    #2e1065
+  );
+
+  color:white;
+
+  font-size:30px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:0.12s;
+
+  position:relative;
+
+  overflow:hidden;
+
+  user-select:none;
+
+  box-shadow:
+    inset 0 3px 8px rgba(255,255,255,0.08),
+    inset 0 -4px 10px rgba(0,0,0,0.5),
+    0 0 15px rgba(124,58,237,0.5),
+    0 8px 20px rgba(0,0,0,0.45);
+}
+
+/* glossy top */
+
+.btn-ctrl::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:50%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.18),
+      transparent
+    );
+
+  border-radius:22px;
+}
+
+.btn-ctrl span{
+
+  position:relative;
+
+  z-index:2;
+
+  text-shadow:
+    0 0 8px white,
+    0 0 15px #a855f7;
+}
+
+.btn-ctrl:hover{
+
+  transform:
+    translateY(-2px)
+    scale(1.03);
+
+  box-shadow:
+    inset 0 3px 8px rgba(255,255,255,0.08),
+    inset 0 -4px 10px rgba(0,0,0,0.5),
+    0 0 22px #7c3aed,
+    0 0 45px rgba(124,58,237,0.45);
+}
+
+.btn-ctrl:active,
+.btn-ctrl.pressed{
+
+  transform:
+    scale(0.92)
+    translateY(3px);
+
+  background:
+    linear-gradient(
+      145deg,
+      #7c3aed,
+      #9333ea
+    );
+
+  box-shadow:
+    inset 0 2px 6px rgba(255,255,255,0.1),
+    inset 0 -2px 6px rgba(0,0,0,0.4),
+    0 0 20px #a855f7,
+    0 0 50px rgba(168,85,247,0.6);
+}
+
+/* =========================================
+   WIN
+========================================= */
+
+.win-overlay{
+
+  position:absolute;
+  inset:0;
+
+  background:
+  rgba(0,0,0,0.7);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  z-index:20;
+
+  backdrop-filter:blur(4px);
+}
+
+.btn-win{
+
+  padding:18px 30px;
+
+  border:none;
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    145deg,
+    #16a34a,
+    #22c55e
+  );
+
+  color:white;
+
+  font-size:18px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  box-shadow:
+  0 0 25px rgba(34,197,94,0.7);
+
+  transition:0.2s;
+}
+
+.btn-win:hover{
+
+  transform:scale(1.05);
+}
+
+.btn-glow-green{
+
+  background:limegreen;
+
+  border:none;
+
+  box-shadow:
+  0 0 20px limegreen,
+  0 0 40px limegreen;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.btn-glow-green:hover{
+
+  transform:scale(1.05);
+}
+
+/* =========================================
+   EFFECTS
+========================================= */
+
+.win-flash{
+
+  animation:
+  winFlash 1s infinite alternate;
+}
+
+@keyframes winFlash{
+
+  from{
+    filter:brightness(1);
+  }
+
+  to{
+    filter:brightness(1.15);
+  }
+}
+
+@keyframes pulseGoal{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.15);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
+
+@keyframes playerMove{
+
+  0%{
+    transform:scale(0.8);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
+
+@keyframes pulseGreen{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.1);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
+
+@keyframes fadeInScale{
+
+  0%{
+    opacity:0;
+    transform:scale(0.7);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes rainbowMove{
+
+  0%{
+    background-position:0%;
+  }
+
+  100%{
+    background-position:300%;
+  }
+}
+
+@keyframes starsMove{
+
+  from{
+    transform:translateY(0);
+  }
+
+  to{
+    transform:translateY(100px);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:700px){
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  .btn-ctrl{
+
+    width:68px;
+    height:68px;
+
+    font-size:25px;
+  }
+
+  .dpad-space{
+
+    width:68px;
+    height:68px;
+  }
+}
+
+@media(max-width:500px){
+
+  .btn-ctrl{
+
+    width:60px;
+    height:60px;
+
+    font-size:22px;
+
+    border-radius:18px;
+  }
+
+  .dpad-space{
+
+    width:60px;
+    height:60px;
+  }
+
+  .yes-btn,
+  .no-btn,
+  .thanks-btn{
+
+    font-size:16px;
+
+    padding:12px 25px;
+  }
+}
