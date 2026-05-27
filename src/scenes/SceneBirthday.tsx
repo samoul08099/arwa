@@ -6,7 +6,7 @@ export default function SceneBirthday({ onNext }: Props) {
   return (
     <div className="screen">
 
-      <img src="/sora2.jfif" className="main-image" />
+      <img src="/arwa/sora2.jfif" className="main-image" />
 
       <div className="overlay" />
 

@@ -26,7 +26,7 @@ export default function App() {
       )}
 
       {scene === "video" && (
-        <SceneVideo />
+      <SceneVideo onDone={() => {}} />
       )}
     </>
   );

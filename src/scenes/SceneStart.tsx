@@ -5,7 +5,7 @@ type Props = {
 export default function SceneStart({ onYes }: Props) {
   return (
     <div className="screen">
-      <img src="/sora1.jfif" className="main-image" />
+      <img src="/arwa/sora1.jfif" className="main-image" />
 
       <div className="overlay" />
 

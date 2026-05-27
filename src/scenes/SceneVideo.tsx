@@ -6,11 +6,11 @@ interface Props {
 
 const VIDEOS = [
   {
-    src: "/video1.mp4",
+    src: "/arwa/video1.mp4",
     label: "🎉 A surprise for you!",
   },
   {
-    src: "/video2.mp4",
+    src: "/arwa/video2.mp4",
     label: "🎵 Happy Birthday Arwa! 🎵",
   },
 ];
